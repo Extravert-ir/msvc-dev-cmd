@@ -62,7 +62,7 @@ async function main() {
         @ECHO "Microsoft Visual Studio not found"
         @EXIT 1
         :2015
-        @CALL "#{MSVS_2015}\\vcvarsall.bat" ${args.join(' ')}
+        @CALL "${MSVS_2015}\\vcvarsall.bat" ${args.join(' ')}
         @GOTO ENV
         :2017
         @CALL "${MSVS_2017}\\vcvarsall.bat" ${args.join(' ')}
