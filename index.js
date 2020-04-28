@@ -56,7 +56,7 @@ async function main() {
 
     core.debug(`Writing helper file: ${helper}`)
     await fs.writeFile(helper, `
-        @IF EXIST "${MSVS_2017}\\vcvarsall.bat" GOTO :2015
+        @IF EXIST "${MSVS_2015}\\vcvarsall.bat" GOTO :2015
         @IF EXIST "${MSVS_2017}\\vcvarsall.bat" GOTO :2017
         @IF EXIST "${MSVS_2019}\\vcvarsall.bat" GOTO :2019
         @ECHO "Microsoft Visual Studio not found"
