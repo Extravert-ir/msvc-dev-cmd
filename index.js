@@ -6,6 +6,7 @@ const path = require('path')
 const process = require('process')
 
 const MSVS_2015 = '%ProgramFiles(x86)%\\Microsoft Visual Studio 14.0\\VC'
+const BUILD_TOOLS = '%ProgramFiles(x86)%\\Microsoft Visual C++ Build Tools'
 // const MSVS_2017 = '%ProgramFiles(x86)%\\Microsoft Visual Studio\\2017\\Enterprise\\VC\\Auxiliary\\Build'
 // const MSVS_2019 = '%ProgramFiles(x86)%\\Microsoft Visual Studio\\2019\\Enterprise\\VC\\Auxiliary\\Build'
 
@@ -56,11 +57,11 @@ async function main() {
 
     core.debug(`Writing helper file: ${helper}`)
     await fs.writeFile(helper, `
-        @IF EXIST "${MSVS_2015}\\vcvarsall.bat" GOTO :2015
+        @IF EXIST "${MSVS_2015}\\vcbuildtools.bat" GOTO :2015
         @ECHO "Microsoft Visual Studio not found"
         @EXIT 1
         :2015
-        @CALL "${MSVS_2015}\\vcvarsall.bat" ${args.join(' ')}
+        @CALL "${MSVS_2015}\\vcbuildtools.bat" ${args.join(' ')}
         @GOTO ENV
         :ENV
         @IF ERRORLEVEL 1 EXIT
