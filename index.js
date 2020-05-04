@@ -57,11 +57,11 @@ async function main() {
 
     core.debug(`Writing helper file: ${helper}`)
     await fs.writeFile(helper, `
-        @IF EXIST "${MSVS_2015}\\vcbuildtools.bat" GOTO :2015
+        @IF EXIST "${BUILD_TOOLS}\\vcbuildtools.bat" GOTO :2015
         @ECHO "Microsoft Visual Studio not found"
         @EXIT 1
         :2015
-        @CALL "${MSVS_2015}\\vcbuildtools.bat" ${args.join(' ')}
+        @CALL "${BUILD_TOOLS}\\vcbuildtools.bat" ${args.join(' ')}
         @GOTO ENV
         :ENV
         @IF ERRORLEVEL 1 EXIT
